@@ -12,5 +12,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface LanRequsetMapping {
-    String name() default "";
+    String value() default "";
 }

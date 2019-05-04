@@ -25,21 +25,22 @@ public class LanApplicationContext {
     private static final Logger logger = Logger.getLogger(LanApplicationContext.class);
     //ioc容器
     private static Map<String, Object> instanceMapping = new ConcurrentHashMap<String, Object>();
-    //存放class
+    //存放class,类型源码中的配置信息，外部是看不到的，相当于BeanFactroy
+    //只能访问ioc容器，间接调用gebean()
     private List<String> cacheClass = new LinkedList<String>();
 
     //测试容器启动
-    public static void main(String[] args) {
-        new LanApplicationContext("application.properties");
-        System.out.println("instanceMapping: " + instanceMapping);
-    }
+//    public static void main(String[] args) {
+//        new LanApplicationContext("application.properties");
+//        System.out.println("instanceMapping: " + instanceMapping);
+//    }
 
     public LanApplicationContext(String location) {
         //定位、载入、注册、初始化、注入
         InputStream is = null;
         try {
             //1、定位
-            is = this.getClass().getClassLoader().getResourceAsStream(location);
+            is = this.getClass().getClassLoader().getResourceAsStream(location.substring(location.indexOf("classpath:")+"classpath:".length()));
             //2、载入
             Properties properties = new Properties();
             properties.load(is);

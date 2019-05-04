@@ -12,6 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Test {
     public static void main(String[] args) {
+        String str = "classpath:application.properties";
+        //System.out.println(str.indexOf("classpath:")+"classpath:".length());
+        System.out.println(str.lastIndexOf("classpath:"));
+        System.out.println(str.substring(str.lastIndexOf("classpath:")));
         Map<String,Object> map = new ConcurrentHashMap<String, Object>();
         map.put("serviceImp",new ServiceImp());
         for(Map.Entry<String,Object> entry : map.entrySet()){
